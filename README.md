@@ -140,3 +140,6 @@ void loop()
 
 ### Hierarchy issues
 Already I think that the splits are questionable; for example, the **looper** and **sampler** are pretty much the same, except that one sources from the ADC and the other from memory. In essence, the looper starts with a full section sample, which could be used in the sampler as well, but with a "blank" sample which the shorter samples are mixed onto. That essentially uses exactly the same tools except for the memory loading process. Therefore these modules could be merged. 
+
+### Simplicity of MIDI-module
+As long as no complex duplex data is required, MIDI signals are only triggered on async events or by some extent, sync clock pulses. This means that if a clear linearity between triggers and commands exists, a command can be processed ant sent immideatly in a very procedural way, making the MIDI-module more of a LUT than a complex model.
