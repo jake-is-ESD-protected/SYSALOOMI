@@ -1,5 +1,6 @@
 # SYSALOOMI
 **SY**nthesizer-**SA**mpler-**LOO**per-**MI**dicontroller
+### [Knowledge Pool](#dev-knowledge-pool) | [Shopping List](#shopping) | [Device Tree](#device-tree)
 
 ## DEV knowledge pool
 
@@ -110,7 +111,7 @@ void loop()
 ```
 [This](https://forum.arduino.cc/t/smoothly-changing-the-frequency-of-a-timer/218352) might also be helpful
 
-### Shopping
+## Shopping
 * [Detentless Encoders](https://www.mouser.de/ProductDetail/Bourns/PEC12R-4025F-N0024?qs=Zq5ylnUbLm4HSBD7%2FFgU%2FA%3D%3D)
 * [Touch pad](https://upverter.com/design/marcteys/e5bbec5797fd0064/muca-breakout---53-multitouch-test-panel/)
 * [Piezo for pads](https://www.mouser.de/ProductDetail/SparkFun/SEN-09196?qs=WyAARYrbSnYalu6YbkDQBw%3D%3D)
@@ -120,3 +121,17 @@ void loop()
 * [RGB matrix high-end](https://www.sparkfun.com/products/14646)
 * [RGB matrix cheap](https://www.amazon.de/-/en/dp/B079HVW652?th=1)
 
+## Device Tree
+
+> **Sync** processes run all the time and are mainly concerned with sampling something.  
+**Async** processes get triggered by the user, compute and then die until reactivated.
+
+|Sync processes|Async Processes|Misc|
+|-|-|-|
+|Adjustable metronome with subdivisions|Rotary Encoder based input|General filters|
+|Quantizing Routine|Simple LED output|Linked list with f-pointers for arbitrary cascades|
+|Buffer Playback|Simple Button Input|MIDI-Driver|
+|Digital Mixing|CLI||
+|Wave synthesis|Drumpad activation||
+|SD-card/USB device reading|Touch pad interaction||
+|UI animations|||
