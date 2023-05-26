@@ -1,6 +1,6 @@
 # SYSALOOMI
 **SY**nthesizer-**SA**mpler-**LOO**per-**MI**dicontroller
-### [Knowledge Pool](#dev-knowledge-pool) | [Shopping List](#shopping) | [Device Tree](#device-tree)
+### [Knowledge Pool](#dev-knowledge-pool) | [Shopping List](#shopping) | [Device Tree](#device-tree) | [Random Thoughts](#random-thoughts)
 
 ## DEV knowledge pool
 
@@ -135,3 +135,8 @@ void loop()
 |Wave synthesis|Drumpad activation||
 |SD-card/USB device reading|Touch pad interaction||
 |UI animations|||
+
+## Random Thoughts
+
+### Hierarchy issues
+Already I think that the splits are questionable; for example, the **looper** and **sampler** are pretty much the same, except that one sources from the ADC and the other from memory. In essence, the looper starts with a full section sample, which could be used in the sampler as well, but with a "blank" sample which the shorter samples are mixed onto. That essentially uses exactly the same tools except for the memory loading process. Therefore these modules could be merged. 
