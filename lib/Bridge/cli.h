@@ -1,6 +1,11 @@
 #ifndef _CLI_H_
 #define _CLI_H_
 
+/* Command line interface
+* virtualize hardware peripherals
+* I/O in text format 
+*/
+
 #include "Arduino.h"
 
 #define RX_PIN          3
