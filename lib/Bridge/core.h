@@ -10,6 +10,7 @@
 
 #include "Arduino.h"
 #include "STM32FreeRTOS.h"
+#include "err.h"
 
 /* Types of tasks
 * always prefixed with "e_task"
@@ -55,22 +56,23 @@ typedef struct task_struct_t{
 * `task_t t`: type of task as specified in enum
 * `TaskHandle_t h`: handle for task
 * `void (*f)(void* p))`: task itself
+* RETURNS
+* `err_t` status, `e_no_err` if OK
 */
-void set_task_config(task_struct_t* pt, 
+err_t set_task_config(task_struct_t* pt, 
                      task_t t, 
                      TaskHandle_t h,
                      uint32_t m,
                      uint8_t p, 
                      void (*f)(void* p));
 
-void create_task(task_struct_t* pt);
-void core_init();
-void core_selfcheck();
+err_t create_task(task_struct_t* pt);
+err_t core_init();
+err_t core_selfcheck();
 
 void task_sampler(void* p);
 void task_metronome(void* p);
 void task_parser(void* p);
-
 void (*function_list[NUM_TASKS])(void* p) = {
     task_sampler,
     task_metronome,
