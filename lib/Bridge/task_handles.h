@@ -8,6 +8,7 @@
 #include "STM32FreeRTOS.h"
 #include "core.h"
 
+// defined in core.cpp
 extern TaskHandle_t h_task_list[NUM_TASKS];
 
 #endif
