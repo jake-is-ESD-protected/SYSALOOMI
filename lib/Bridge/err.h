@@ -3,11 +3,6 @@
 
 /* Error interpreter and handling */
 
-#define INFO    0
-#define WARNING 1
-#define ERROR   2
-#define SEVERE  3
-
 typedef enum err{
     e_no_err,
     e_mem_null,
@@ -22,6 +17,6 @@ typedef enum err{
 `err_t e`: Error to handle
 `void* args`: additional arguments
 */
-void errHandler(err_t e, void* args);
+void err_handler(err_t e, void* args);
 
 #endif
