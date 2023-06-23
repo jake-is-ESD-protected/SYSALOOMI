@@ -33,12 +33,13 @@ err_t create_task(task_struct_t* pt){
     stat = xTaskCreate(pt->function,
                 (char*)pt->type,
                 pt->mem_size,
-                NULL,
+                (void*)pt,
                 pt->priority,
                 &pt->handle);
     if(stat != pdPASS){
         return e_mem_null;
     }
+    pt->running = true;
     return e_no_err;
 }
 
@@ -63,12 +64,37 @@ err_t core_init(){
         }
     }
 
+    core.state = e_state_synthesizer; // default job: this will change
+    // xTaskNotifyGive(core_get_cur_task_handle());
+
     return e_no_err;
 }
 
+// TaskHandle_t core_get_cur_task_handle(){
+//     return core.task_list[core.state].handle;
+// }
+
+void task_synthesizer(void* p){
+
+}
+
 void task_sampler(void* p){
+    task_struct_t* pt = (task_struct_t*)p;
+    while(1){
+        uint32_t pd;
+        xTaskNotifyWait(0, 0, &pd, portMAX_DELAY);
+    }
     
 }
+
+void task_looper(void* p){
+
+}
+
+void task_midicontroller(void* p){
+
+}
+
 
 void task_metronome(void* p){
 
