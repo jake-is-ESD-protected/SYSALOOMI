@@ -70,9 +70,32 @@ err_t core_init(){
     return e_no_err;
 }
 
-// TaskHandle_t core_get_cur_task_handle(){
-//     return core.task_list[core.state].handle;
-// }
+task_struct_t* core_get_task_handle(task_t t){
+    return &core.task_list[t];
+}
+
+void task_notify(task_struct_t* t, cmd_struct_t c, bool from_isr){
+    if(from_isr){
+        BaseType_t dummy = pdFALSE;
+        c.origin = e_origin_interrupt;
+        xTaskNotifyFromISR(t->handle, 
+                           *(uint32_t*)&c, 
+                           eSetValueWithOverwrite, 
+                           &dummy);
+    }
+    else{
+        xTaskNotify(t->handle, *(uint32_t*)&c, eSetValueWithOverwrite);
+    }
+}
+
+cmd_struct_t task_notify_take(TickType_t ticks_to_wait){
+    uint32_t c = ulTaskNotifyTake(pdTRUE, ticks_to_wait);
+    return *(cmd_struct_t*)&c;
+}
+
+cmd_struct_t sleep_until_notified(){
+    return task_notify_take(portMAX_DELAY);
+}
 
 void task_synthesizer(void* p){
 
@@ -81,8 +104,7 @@ void task_synthesizer(void* p){
 void task_sampler(void* p){
     task_struct_t* pt = (task_struct_t*)p;
     while(1){
-        uint32_t pd;
-        xTaskNotifyWait(0, 0, &pd, portMAX_DELAY);
+        task_notify_take(portMAX_DELAY);
     }
     
 }
